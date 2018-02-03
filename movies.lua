@@ -35,9 +35,9 @@ function LoadBlips()
     SetBlipSprite(blip, 135)
     SetBlipScale(blip, 1.2)
     SetBlipColour(blip, 25)
-    SetBlipAsShortRange(blip, false)
+    SetBlipAsShortRange(blip, true)
     BeginTextCommandSetBlipName("STRING")
-    AddTextComponentSubstringPlayerName("Cinémas")
+    AddTextComponentSubstringPlayerName("Cinema")
     EndTextCommandSetBlipName(blip)
 --loads the theater interior
     RequestIpl("v_cinema")
@@ -138,16 +138,16 @@ function IsPlayerInArea()
         if GetDistanceBetweenCoords(playerCoords, v.x, v.y, v.z) < 4.8 then
 -- Check if the cinema is open or closed.
           if hour < openingHour or hour > closingHour then
-			helpDisplay("Le cinema est ~r~fermé ~w~mercide revenir entre 1am et 22pm.", 0)
+			helpDisplay("The cinema is ~r~closed ~w~, please return between 1am and 22pm.", 0)
           else
-			helpDisplay("Appuyez sur ~INPUT_CONTEXT~ pour entrer dans la salle de cinéma.", 0)
+			helpDisplay("Press on ~INPUT_CONTEXT~ to enter the movie theater.", 0)
 -- Check if the player is near the cinema and pressed "INPUT_CONTEXT"
 			if IsControlJustReleased(0, 38) then
 			ESX.UI.Menu.Open(
 				'default', GetCurrentResourceName(), 'menu_cinema',
 				{
 					title = 'Programmation',
-					align = 'top-left',
+					align = 'bottom-right',
 					elements = {
 						{label = 'Cartoon - 10$', value = 'PL_CINEMA_CARTOON'},
 						{label = 'Fame or Shame - 10$', value = 'PL_LES1_FAME_OR_SHAME'},
@@ -176,10 +176,10 @@ function IsPlayerInArea()
 							TaskLookAtCoord(GetPlayerPed(-1), 319.259, 251.827, 85.648, -1, 2048, 3)
 							FreezeEntityPosition(GetPlayerPed(-1), 1)	
 							SetNotificationTextEntry('STRING')
-							AddTextComponentString("Appuyez sur la touche ~r~E ~w~pour sortir du cinéma.")
+							AddTextComponentString("Press ~r~E ~w~to exit the movie theater.")
 							DrawNotification(false, false)
 						else
-							TriggerEvent('esx:showNotification', "Vous n'avez pas assez d'argent !")
+							TriggerEvent('esx:showNotification', "You do not have enough money!")
 						end
 					end)
 
