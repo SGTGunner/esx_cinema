@@ -234,7 +234,7 @@ Citizen.CreateThread(function()
         MovieState = false
       end
     if GetRoomKeyFromEntity(PlayerPedId()) == -1337806789 then
-	 --SetPlayerInvisibleLocally(PlayerId(),  true)
+	 SetPlayerInvisibleLocally(PlayerId(),  true)
 	 --SetEntityVisible(PlayerPedId(-1), false)
 	 SetPlayerInvincible(PlayerId(), true)
      	 SetCurrentPedWeapon(PlayerPedId(), GetHashKey("weapon_unarmed"), 1)
